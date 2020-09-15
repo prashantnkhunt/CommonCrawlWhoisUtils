@@ -54,6 +54,9 @@ public class WrapperToDomain {
             Timestamp timestamp1 = new Timestamp();
             timestamp1.setS(l.getM().getTimestamp().getS());
         }
+
+        ccRecord.setName(ccRecordName);
+        ccRecord.setJob_title(ccJobTitle);
         return ccRecord;
     }
 }
