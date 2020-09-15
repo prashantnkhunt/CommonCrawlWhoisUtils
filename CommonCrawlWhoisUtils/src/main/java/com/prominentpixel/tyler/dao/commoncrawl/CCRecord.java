@@ -105,7 +105,7 @@ public class CCRecord implements Comparable<CCRecord>{
         return result;
     }
 
-    @Override
+   /* @Override
     public String toString() {
 
         StringBuilder result = new StringBuilder(256);
@@ -120,5 +120,5 @@ public class CCRecord implements Comparable<CCRecord>{
         result.append("\"linkedIns\":"+(null != linkedIns ? linkedIns.toString() : null));
         result.append("} ");
         return result.toString();
-    }
+    }*/
 }

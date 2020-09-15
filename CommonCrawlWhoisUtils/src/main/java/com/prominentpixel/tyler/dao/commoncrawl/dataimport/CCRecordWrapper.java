@@ -11,8 +11,24 @@ public class CCRecordWrapper {
     private Numbers numbers;
     private References references;
     private JobTitle job_title;
-    private CCRecordTwitter twitter;
-    private CCRecordLinkedin linkedIns; //can i see err msg
+    private Twitter twitter;
+    private Linkedin linkedin; //can i see err msg
+
+    public Twitter getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(Twitter twitter) {
+        this.twitter = twitter;
+    }
+
+    public Linkedin getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin(Linkedin linkedin) {
+        this.linkedin = linkedin;
+    }
 
     public References getReferences() {
         return references;

@@ -19,8 +19,9 @@ public class JsonToPojo {
 
         BufferedReader reader;
         try {
+       //            /home/Desktop/0003b31b-9868-4629-80f3-8278885836f3.txt
             reader = new BufferedReader(new FileReader(
-                    "/home/jdz/Desktop/0003b31b-9868-4629-80f3-8278885836f3.txt"));
+                    "/home/pp-1/Desktop/0003b31b-9868-4629-80f3-8278885836f3.txt"));
             String line = reader.readLine();
             while (line != null) {
                 ObjectMapper mapper = new ObjectMapper();

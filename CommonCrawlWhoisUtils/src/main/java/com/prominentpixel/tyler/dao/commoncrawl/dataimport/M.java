@@ -9,6 +9,24 @@ public class M {
     private Name name;
     private Pattern f;
     private Pattern pattern;
+    private Name twitter;
+    private Name linkedin;
+
+    public Name getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin(Name linkedin) {
+        this.linkedin = linkedin;
+    }
+
+    public Name getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(Name twitter) {
+        this.twitter = twitter;
+    }
 
     public Timestamp getTimestamp() {
         return timestamp;
