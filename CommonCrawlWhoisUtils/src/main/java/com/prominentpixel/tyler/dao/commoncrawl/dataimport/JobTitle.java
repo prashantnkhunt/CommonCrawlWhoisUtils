@@ -7,6 +7,15 @@ public class JobTitle {
 
 
     private M m;
+    private String s;
+
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
 
     public M getM() {
         return m;

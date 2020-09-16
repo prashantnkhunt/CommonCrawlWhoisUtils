@@ -11,6 +11,15 @@ public class M {
     private Pattern pattern;
     private Name twitter;
     private Name linkedin;
+    private String s;
+
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
 
     public Name getLinkedin() {
         return linkedin;

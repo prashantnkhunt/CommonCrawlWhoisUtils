@@ -2,7 +2,16 @@ package com.prominentpixel.tyler.dao.commoncrawl.dataimport;
 
 public class Linkedin {
 
+    private String s;
     private M m;
+
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
 
     public M getM() {
         return m;

@@ -4,6 +4,15 @@ public class CCRecordTwitter {
 
     private Float confidence;
     private String username;
+    private String s;
+
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
 
     public Float getConfidence() {
         return confidence;

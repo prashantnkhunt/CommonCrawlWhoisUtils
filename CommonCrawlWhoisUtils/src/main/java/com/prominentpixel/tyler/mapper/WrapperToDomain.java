@@ -19,6 +19,13 @@ public class WrapperToDomain {
 
         Optional.ofNullable(loadingObject)
                 .map(o -> o.getJob_title())
+                .ifPresent(s -> {
+                    if (s.getS() != null)
+                        ccJobTitle.setS(s.getS());
+                });
+
+        Optional.ofNullable(loadingObject)
+                .map(o -> o.getJob_title())
                 .map(t -> t.getM())
                 .ifPresent(m -> {
                     if (m.getJobTitle() != null)
@@ -45,6 +52,14 @@ public class WrapperToDomain {
                         ccRecordName.setName(m.getS());
                 });
 
+
+        Optional.ofNullable(loadingObject)
+                .map(o -> o.getLinkedin())
+                .ifPresent(s -> {
+                    if (s.getS() != null)
+                        ccRecordLinkedin.setS(s.getS());
+                });
+
         Optional.ofNullable(loadingObject)
                 .map(t-> t.getLinkedin())
                 .map(o -> o.getM())
@@ -53,6 +68,13 @@ public class WrapperToDomain {
                         ccRecordLinkedin.setUsername(s.getLinkedin().getS());
                     if (s.getLinkedin() != null )
                         ccRecordLinkedin.setConfidence(s.getConfidence().getN());
+                });
+
+        Optional.ofNullable(loadingObject)
+                .map(o -> o.getTwitter())
+                .ifPresent(s -> {
+                    if (s.getS() != null)
+                        ccRecordTwitter.setS(s.getS());
                 });
         Optional.ofNullable(loadingObject)
                 .map(l-> l.getTwitter())
@@ -64,14 +86,14 @@ public class WrapperToDomain {
                         ccRecordTwitter.setConfidence(s.getConfidence().getN());
                 });
 
-        for (L l : loadingObject.getReferences().getL()) {
+      /*  for (L l : loadingObject.getReferences().getL()) {
             Url url1=new Url();
             url1.setS(l.getM().getUrl().getS());
         }
         for (L l : loadingObject.getReferences().getL()) {
             Timestamp timestamp1 = new Timestamp();
             timestamp1.setS(l.getM().getTimestamp().getS());
-        }
+        }*/
 
         ccRecord.setName(ccRecordName);
         ccRecord.setJob_title(ccJobTitle);

@@ -1,7 +1,9 @@
 package com.prominentpixel.tyler.dao.commoncrawl.dataimport;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.prominentpixel.tyler.dao.commoncrawl.CCRecordLinkedin;
 import com.prominentpixel.tyler.dao.commoncrawl.CCRecordTwitter;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CCRecordWrapper {
 
     private Email  email = new Email();
@@ -11,8 +13,8 @@ public class CCRecordWrapper {
     private Numbers numbers;
     private References references;
     private JobTitle job_title;
-    private Twitter twitter;
-    private Linkedin linkedin; //can i see err msg
+    private Twitter twitter ;
+    private Linkedin linkedin;
 
     public Twitter getTwitter() {
         return twitter;

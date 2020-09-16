@@ -4,6 +4,15 @@ public class CCJobTitle {
 
     private Float confidence;
     private String job_title;
+    private String s;
+
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
 
     public Float getConfidence() {
         return confidence;
@@ -24,8 +33,8 @@ public class CCJobTitle {
     @Override
     public String toString() {
         return "{" +
-                "\"confidence\":"+this.getConfidence()+","+
-                "\"job_title\":"+"\""+this.getJob_title()+"\""
-                +"}";
+                "\"confidence\":" + this.getConfidence() + "," +
+                "\"job_title\":" + "\"" + this.getJob_title() + "\""
+                + "}";
     }
 }
