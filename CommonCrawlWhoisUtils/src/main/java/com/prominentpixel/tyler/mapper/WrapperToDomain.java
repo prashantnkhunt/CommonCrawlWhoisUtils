@@ -6,7 +6,7 @@ import com.prominentpixel.tyler.dao.commoncrawl.dataimport.*;
 import java.util.Optional;
 public class WrapperToDomain {
 
-    public CCRecord convertWrapperToDomain(CCRecordWrapper loadingObject) {
+    public CCRecord convertWrapperToDomainWhoIsEmails(CCRecordWrapper loadingObject) {
         CCRecord ccRecord = new CCRecord();
         CCJobTitle ccJobTitle = new CCJobTitle();
         CCRecordName ccRecordName = new CCRecordName();

@@ -148,7 +148,7 @@
                 <!-- add Main-Class to manifest file -->
                 <transformer
                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>com.prominentpixel.tyler.mapreduce.CCrawlDriver
+                  <mainClass>com.prominentpixel.tyler.mapreduce.dataimport.CCCrawlDataImportDriver
                   </mainClass>
                 </transformer>
               </transformers>
