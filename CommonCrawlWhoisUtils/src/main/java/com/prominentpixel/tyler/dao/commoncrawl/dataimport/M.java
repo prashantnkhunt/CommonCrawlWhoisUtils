@@ -2,11 +2,15 @@ package com.prominentpixel.tyler.dao.commoncrawl.dataimport;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 public class M {
-    private Name jobTitle;
-    private Confidence confidence;
+	private Confidence confidence;
+	private Name name;
+	private Str country;
+	private Str city;
+//	private Str job_title;
+
+	private Name jobTitle;
     private Timestamp timestamp;
     private Url url;
-    private Name name;
     private Pattern f;
     private Pattern pattern;
     private Name twitter;
@@ -94,4 +98,21 @@ public class M {
     public void setF(Pattern f) {
         this.f = f;
     }
+
+	public Str getCountry() {
+		return country;
+	}
+
+	public void setCountry(Str country) {
+		this.country = country;
+	}
+
+	public Str getCity() {
+		return city;
+	}
+
+	public void setCity(Str city) {
+		this.city = city;
+	}
+
 }

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.prominentpixel.tyler.dao.commoncrawl.CCRecord;
 import com.prominentpixel.tyler.dao.commoncrawl.CCRecordDB;
+import com.prominentpixel.tyler.dao.commoncrawl.CCRecordDynamoDb;
 import com.prominentpixel.tyler.dao.commoncrawl.dataimport.CCRecordWrapper;
 import com.prominentpixel.tyler.mapper.WrapperToDomain;
 import org.apache.hadoop.conf.Configuration;
@@ -63,7 +64,7 @@ public class CCrawlDataImportMapper extends Mapper<LongWritable, Text, NullWrita
         try {
 
             CCRecordWrapper loadingObjectFromInput = mapper.readValue(line, CCRecordWrapper.class);
-            CCRecord loadingObject  = wrapperToDomain.convertWrapperToDomainWhoIsEmails(loadingObjectFromInput);
+            CCRecordDynamoDb loadingObject  = wrapperToDomain.convertWrapperToDomainWhoIsEmailsDynamoDB(loadingObjectFromInput);
 
             CCRecordDB dbObject = dynamoDBMapper.load(CCRecordDB.class, loadingObject.getDomain(),dynamoDBMapperConfig);
 
@@ -74,7 +75,7 @@ public class CCrawlDataImportMapper extends Mapper<LongWritable, Text, NullWrita
 
                 dbStoreObject.setDomain(loadingObject.getDomain());
 
-                List<CCRecord> emailList = new ArrayList<>();
+                List<CCRecordDynamoDb> emailList = new ArrayList<>();
                 emailList.add(loadingObject);
                 dbStoreObject.setEmails(emailList);
                 dynamoDBMapper.save(dbStoreObject);
@@ -83,11 +84,11 @@ public class CCrawlDataImportMapper extends Mapper<LongWritable, Text, NullWrita
             else { //Means Obj is already present in DB, Need to Update it.
 
                 //Check if both the objects are same, if same, do nothing.
-                List<CCRecord> dbRecords = dbObject.getEmails();
+                List<CCRecordDynamoDb> dbRecords = dbObject.getEmails();
                 boolean isMatched = false;
 
                 if(null != dbRecords && dbRecords.size() > 0){
-                    for(CCRecord dbRecord : dbRecords){
+                    for(CCRecordDynamoDb dbRecord : dbRecords){
 
                         if(dbRecord.compareTo(loadingObject) == 0){
                             isMatched = true;

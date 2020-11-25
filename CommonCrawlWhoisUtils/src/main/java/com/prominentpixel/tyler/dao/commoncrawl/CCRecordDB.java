@@ -14,7 +14,7 @@ public class CCRecordDB {
 
     private String contactURL;
 
-    private List<CCRecord> emails;
+    private List<CCRecordDynamoDb> emails;
 
     @DynamoDBHashKey(attributeName="domain")
     public String getDomain() {
@@ -27,11 +27,11 @@ public class CCRecordDB {
 
 //    @DynamoDBTypeConverted(converter = CCRecordConvertor.class)
     @DynamoDBAttribute(attributeName="emails")
-    public List<CCRecord> getEmails() {
+    public List<CCRecordDynamoDb> getEmails() {
         return emails;
     }
 
-    public void setEmails(List<CCRecord> emails) {
+    public void setEmails(List<CCRecordDynamoDb> emails) {
         this.emails = emails;
     }
 

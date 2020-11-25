@@ -3,13 +3,13 @@ package com.prominentpixel.tyler.dao.commoncrawl.convertor;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prominentpixel.tyler.dao.commoncrawl.CCJobTitle;
-import com.prominentpixel.tyler.dao.commoncrawl.CCRecord;
+import com.prominentpixel.tyler.dao.commoncrawl.CCRecordDynamoDb;
 
-public class CCRecordConvertor implements DynamoDBTypeConverter<String, CCRecord> {
+public class CCRecordConvertor implements DynamoDBTypeConverter<String, CCRecordDynamoDb> {
 
     @Override
-    public String convert(CCRecord object) {
-        CCRecord source = (CCRecord) object;
+    public String convert(CCRecordDynamoDb object) {
+        CCRecordDynamoDb source = (CCRecordDynamoDb) object;
         String ccRecordName = null;
         try {
             if (source != null) {
@@ -22,14 +22,14 @@ public class CCRecordConvertor implements DynamoDBTypeConverter<String, CCRecord
     }
 
     @Override
-    public CCRecord unconvert(String s) {
+    public CCRecordDynamoDb unconvert(String s) {
 
-        CCRecord result = new CCRecord();
+        CCRecordDynamoDb result = new CCRecordDynamoDb();
         try {
             if (s != null && s.length() != 0) {
 
                 ObjectMapper mapper = new ObjectMapper();
-                result = mapper.readValue(s, CCRecord.class);
+                result = mapper.readValue(s, CCRecordDynamoDb.class);
             }
         } catch (Exception e) {
             e.printStackTrace();

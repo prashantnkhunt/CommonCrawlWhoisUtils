@@ -6,7 +6,7 @@ public class Name {
     String s;
 
     @JsonInclude(JsonInclude.Include.NON_NULL) //ignore null field on this property only
-             String jobTitle;
+    String jobTitle;
 
     M m;
 

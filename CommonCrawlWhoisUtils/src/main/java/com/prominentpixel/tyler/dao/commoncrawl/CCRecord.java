@@ -1,37 +1,37 @@
 package com.prominentpixel.tyler.dao.commoncrawl;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import com.prominentpixel.tyler.dao.commoncrawl.convertor.CCJobTitleConvertor;
-import com.prominentpixel.tyler.dao.commoncrawl.convertor.CCLinkedinsConvertor;
-import com.prominentpixel.tyler.dao.commoncrawl.convertor.CCRecordNameConvertor;
-import com.prominentpixel.tyler.dao.commoncrawl.convertor.CCTwitterConvertor;
-
 import java.util.List;
 
-@DynamoDBDocument
-public class CCRecord implements Comparable<CCRecord>{
+public class CCRecord implements Comparable<CCRecord> {
 
+    private String url;
     private String email;
     private String domain;
 
     private List<String> numbers;
-    private CCRecordName name;
 
-    private CCJobTitle job_title;
-    private CCRecordTwitter twitter;
-    private CCRecordLinkedin linkedIns;
+    private String name;
+    private Float name_confidence;
+    private String name_pattern;
 
-    @DynamoDBTypeConverted(converter = CCJobTitleConvertor.class)
-    @DynamoDBAttribute(attributeName="job_title")
-    public CCJobTitle getJob_title() {
-        return job_title;
+    private Float job_title_confidence;
+    private String job_title;
+
+    private Float twitter_confidence;
+    private String twitter_username;
+
+    private Float linkedIn_confidence;
+    private String linkedIn_username;
+
+
+    public String getUrl() {
+        return url;
     }
 
-    public void setJob_title(CCJobTitle job_title) {
-        this.job_title = job_title;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    @DynamoDBAttribute(attributeName="email")
     public String getEmail() {
         return email;
     }
@@ -40,7 +40,6 @@ public class CCRecord implements Comparable<CCRecord>{
         this.email = email;
     }
 
-    @DynamoDBHashKey(attributeName="domain")
     public String getDomain() {
         return domain;
     }
@@ -49,7 +48,6 @@ public class CCRecord implements Comparable<CCRecord>{
         this.domain = domain;
     }
 
-    @DynamoDBAttribute(attributeName="numbers")
     public List<String> getNumbers() {
         return numbers;
     }
@@ -58,67 +56,99 @@ public class CCRecord implements Comparable<CCRecord>{
         this.numbers = numbers;
     }
 
-    @DynamoDBTypeConverted(converter = CCRecordNameConvertor.class)
-    @DynamoDBAttribute(attributeName="name")
-    public CCRecordName getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(CCRecordName name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    @DynamoDBTypeConverted(converter = CCTwitterConvertor.class)
-    @DynamoDBAttribute(attributeName="twitter")
-    public CCRecordTwitter getTwitter() {
-        return twitter;
+    public Float getName_confidence() {
+        return name_confidence;
     }
 
-    public void setTwitter(CCRecordTwitter twitter) {
-        this.twitter = twitter;
+    public void setName_confidence(Float name_confidence) {
+        this.name_confidence = name_confidence;
     }
 
-    @DynamoDBTypeConverted(converter = CCLinkedinsConvertor.class)
-    @DynamoDBAttribute(attributeName="linkedIns")
-    public CCRecordLinkedin getLinkedIns() {
-        return linkedIns;
+    public String getName_pattern() {
+        return name_pattern;
     }
 
-    public void setLinkedIns(CCRecordLinkedin linkedIns) {
-        this.linkedIns = linkedIns;
+    public void setName_pattern(String name_pattern) {
+        this.name_pattern = name_pattern;
     }
 
+    public Float getJob_title_confidence() {
+        return job_title_confidence;
+    }
+
+    public void setJob_title_confidence(Float job_title_confidence) {
+        this.job_title_confidence = job_title_confidence;
+    }
+
+    public String getJob_title() {
+        return job_title;
+    }
+
+    public void setJob_title(String job_title) {
+        this.job_title = job_title;
+    }
+
+    public Float getTwitter_confidence() {
+        return twitter_confidence;
+    }
+
+    public void setTwitter_confidence(Float twitter_confidence) {
+        this.twitter_confidence = twitter_confidence;
+    }
+
+    public String getTwitter_username() {
+        return twitter_username;
+    }
+
+    public void setTwitter_username(String twitter_username) {
+        this.twitter_username = twitter_username;
+    }
+
+    public Float getLinkedIn_confidence() {
+        return linkedIn_confidence;
+    }
+
+    public void setLinkedIn_confidence(Float linkedIn_confidence) {
+        this.linkedIn_confidence = linkedIn_confidence;
+    }
+
+    public String getLinkedIn_username() {
+        return linkedIn_username;
+    }
+
+    public void setLinkedIn_username(String linkedIn_username) {
+        this.linkedIn_username = linkedIn_username;
+    }
 
     @Override
     public int compareTo(CCRecord other) {
-
-        int result=0;
-
-        //Nerrow comparison by email and domain.
-        if(this.domain.compareTo(other.domain) == 0){
-
-            result = this.email.compareTo(other.email);
-        }
-        else{
-            result = this.domain.compareTo(other.domain);
-        }
-        return result;
+        return ((this.domain.compareTo(other.domain) == 0) ? this.email.compareTo(other.email) : this.domain.compareTo(other.domain));
     }
 
-   /* @Override
-    public String toString() {
+    @Override
+    public boolean equals(Object obj) {
 
-        StringBuilder result = new StringBuilder(256);
+        if(obj == null){
+            return false;
+        }else{
+            CCRecord other = (CCRecord) obj;
+            return ((this.domain.compareTo(other.domain) == 0) && (this.email.compareTo(other.email) == 0));
+        }
+    }
 
-        result.append("{ ");
-        result.append("\"email\":"+"\""+email.toString()+"\",");
-        result.append("\"domain\":"+"\""+domain.toString()+"\",");
-        result.append("\"numbers\":"+numbers.toString()+",");
-        result.append("\"name\":"+name.toString()+",");
-        result.append("\"job_title\":"+(null != job_title ? job_title.toString() : null) +",");
-        result.append("\"twitter\":"+(null != twitter ? twitter.toString() : null ) +",");
-        result.append("\"linkedIns\":"+(null != linkedIns ? linkedIns.toString() : null));
-        result.append("} ");
-        return result.toString();
-    }*/
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + email.hashCode();
+        result = 31 * result + domain.hashCode();
+        return result;
+    }
 }
