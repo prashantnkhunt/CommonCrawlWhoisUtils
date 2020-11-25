@@ -19,7 +19,7 @@
     <jackson.version>2.9.8</jackson.version>
     <awssdk.version>1.11.754</awssdk.version>
     <hadoop.version>2.7.6</hadoop.version>
-
+    <elasticsearch.version>7.6.1</elasticsearch.version>
   </properties>
 
   <dependencies>
@@ -85,6 +85,12 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client -->
+    <dependency>
+      <groupId>org.elasticsearch.client</groupId>
+      <artifactId>elasticsearch-rest-high-level-client</artifactId>
+      <version>${elasticsearch.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
