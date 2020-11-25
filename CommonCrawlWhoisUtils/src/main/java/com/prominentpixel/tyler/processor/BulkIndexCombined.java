@@ -96,7 +96,7 @@ public class BulkIndexCombined {
 		
 //        if(logger.isDebugEnabled())
 //			logger.debug("Save, Id: "+processorRecord.getId()+", record: " + sourceData);
-        System.out.println("Save, Id: "+processorRecord.getId()+", record: " + sourceData);
+//        System.out.println("Save, Id: "+processorRecord.getId()+", record: " + sourceData);
 
         bulkProcessor.add(request);
     }
